@@ -71,5 +71,53 @@ f(x) = **w · x** + b 라고 하자.
 
 양의 점 x라면, f(x) = **w · x** + b = a, a>0
 
-margin distance를 재보자.
+임의의 점 x에서 decision boundary 위로 수선의 발을 내린 점을 ![image](https://user-images.githubusercontent.com/101063108/160341634-af05dedb-3103-4fe5-8332-fc52c5f30efb.png)라 하자.
+
+그 둘 사이의 거리를 재볼텐데, 이 거리를 r이라 하고, w는 decision boundary에 수직인 벡터 (1,-1)이라 하면,
+
+![image](https://user-images.githubusercontent.com/101063108/160345653-7cf5d1af-00f7-42c5-ba36-f8a917a1c3c3.png)
+
+w벡터를 w벡터의 크기로 나눠주면 단위벡터가 된다.
+
+![image](https://user-images.githubusercontent.com/101063108/160345779-2f6c6053-7550-4700-9205-7728edeb3316.png)
+
+이때 ![image](https://user-images.githubusercontent.com/101063108/160345887-7ef0cbb8-d80b-43c9-8425-74eb0b0a2a23.png)는 위의 식에서 0이므로, 위와 같이 계산된다.
+
+따라서 거리 r은 다음과 같다.
+
+![image](https://user-images.githubusercontent.com/101063108/160345995-e3554d7d-f7a9-4a77-ad68-9dfad8420748.png)
+
+그렇다면 좋은 decision boundary는 margin distance를 어떻게 해야할까?
+
+margin을 최대화해야 한다.
+
+여기서 점과 decision boundary 사이의 거리가 r, 즉 위의 식과 같다.
+
+![image](https://user-images.githubusercontent.com/101063108/160351175-aa0e8a97-8e3d-487f-93ef-31159656adf6.png)
+
+이때, 아래쪽 한계와 위쪽 한계 둘다 고려해주어야 하므로 2r을 최대화 하고자 한다.
+
+![image](https://user-images.githubusercontent.com/101063108/160351361-93ad5649-ef8a-4399-b318-264ef2b89b01.png)
+
+우리는 margin distance를 구하고 있으므로, 모든 instance에 대해 a보다 크거나 같아야한다.
+
+a는 임의의 숫자 이므로 1을 넣어보면,
+
+![image](https://user-images.githubusercontent.com/101063108/160352301-3b2f648f-b018-480e-a88f-0833df7a9912.png)
+
+위의 식처럼 되고, 2는 상수이므로 최대화하는데 영향을 미치지 않으므로 1로 바꿔도 무방하다.
+
+w가 분모에 있어 계산하기 까다로우므로, 최소화하는 것으로 식을 바꿔준다.
+
+![image](https://user-images.githubusercontent.com/101063108/160352676-acebb40a-2d10-4156-9d3a-08bbdc6e3be0.png)
+
+이때 ![image](https://user-images.githubusercontent.com/101063108/160353160-9a82e026-d077-4b9b-853e-1325610c886e.png)
+는 ![image](https://user-images.githubusercontent.com/101063108/160353184-f717d8c6-d82a-4370-a7fd-0462d587e8f2.png) 으로 쓸 수 있고, 루트의 경우 연속적으로 증가하기 때문에 최소화하는데에 영향을 미치지 않는다.
+
+따라서 안의 내용이 중요해지는데 이 제곱의 형태가 있어서 이것이 quadratic optimization 문제가 된다.
+
+linear programming을 이용하거나, quadratic programming을 이용해 최적화를 수행할 수 있다.
+
+# 5.3. SVM with Matlab
+
 
