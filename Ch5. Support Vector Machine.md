@@ -120,4 +120,153 @@ linear programming을 이용하거나, quadratic programming을 이용해 최적
 
 # 5.3. SVM with Matlab
 
+//matlab 실습
+
+우리가 지금까지 해왔던 것은 분류가 잘 되어 있는 경우 였다. 하지만 실제로는 그렇지 않은 경우가 많을 것이다.
+
+![image](https://user-images.githubusercontent.com/101063108/160525663-163b30eb-7639-441d-8a3b-ebf7dfe1f1d3.png)
+
+만일 새로운 점들이 추가 된다고 하면, Decision boundary도 변경될 것이다.
+
+![image](https://user-images.githubusercontent.com/101063108/160525740-bdd5104d-a3e4-4265-b62f-914da005e4c9.png)
+
+위의 두개의 점이라면, margin이 줄어들긴 해도 선형으로 decision boundary를 결정할 수 있을 것이다.
+
+그러나 분류를 어렵게 하는 점이 들어온다면, 선형으로는 분류를 할 수 없는 경우가 생긴다.
+
+우리는 그동안 Hard margin을 이용해왔다.
+
+Hard margin이란, 에러 케이스를 허용하지 않는 것이다. 반대로 Soft margin은 지정한 에러케이스는 허용하겠다 라는 의미이다.
+
+이러한 soft margin을 이용해 이 문제를 해결할 수 있고, 또는 kernel trick을 이용해 hard margin이지만 decision boundary가 선형이 아닌 방식으로 해결할 수 있을 것이다.
+
+# 5.4. Error Handling in SVM
+
+이러한 선형적인 decision boundary로 분류할 수 없는 에러 케이스가 발생했을 때 어떻게 해야할까?
+
+![image](https://user-images.githubusercontent.com/101063108/160537164-0d60b885-b37c-4167-9d92-4e007b408de0.png)
+
+
+1. decision boundary를 더 복잡하게 만들자.
+
+그렇게 되면 이제 non-linear하게 된다.
+
+2. error가 있음을 인정하자.
+
+이러한 에러를 식에 적용하고, 이 에러를 잘 줄이는 것이 중요해진다.
+
+에러가 있음을 인정할 때, 어떻게 다루어야 할까?
+
+![image](https://user-images.githubusercontent.com/101063108/160537902-04e11df5-ead0-4085-ac81-c21e5c324e75.png)
+
+
+1. 에러 케이스의 개수를 세서, 그 수를 줄이는 방법
+
+![image](https://user-images.githubusercontent.com/101063108/160537274-a26fb113-b26e-4ef9-85e2-a9c5964bc661.png)
+
+C는 정도를 나타내는 상수, 1이라고 둘 수 있다. C를 1이라 두면, 에러 케이스들은 멀든 가깝든 모두 1이라는 값을 가지게 된다.
+
+파란색 점 부분이 positive하다고 가정하고, 파란 점 하나가 점점 decision boundary 쪽으로 이동하다가 넘어가서 error case가 된다고 해보자.
+
+이 점이 파란 선에 닿는 순간 우리가 전에 말한 a라는 값이 1이 되고, 거기서부터 에러의 가능성은 올라가게 된다.
+
+그러다가 decision boundary를 넘는 순간 이 케이스는 이제 에러가 되므로 에러를 나타내는 loss function은 0에서 1로 점프하게 된다.
+
+이러한 방식은 현재는 잘 사용되지 않는데, 멀거나 가깝거나 상관없이 error 케이스가 다 1이라는 penalty를 받게 되기 때문이기도 하다.
+
+2. Hinge loss의 이용
+
+이러한 것을 보완한것이 hinge loss이다.
+
+hinge loss는 slack 변수를 사용하여 잘못 분류된 case에 대해 각기 다른 penalty를 부과한다.
+
+![image](https://user-images.githubusercontent.com/101063108/160538157-db955979-71a8-4459-b847-1fd05620f84e.png)
+
+![image](https://user-images.githubusercontent.com/101063108/160538175-1cd9a244-9251-4ccc-bf8c-c74c118a18b5.png)
+
+식에서는 모든 slack변수를 더한 값이 들어가게 된다.
+
+여기서 C는 상수가 아닌, 정도가 다른 매개변수가 된다.
+
+a = 1이 되는 시점부터 서서히 증가하기 시작하며, decision boundary를 지나는 순간 1이 되고 그 후는 그 이상이 된다.
+
+조건 또한 뒤에 ![image](https://user-images.githubusercontent.com/101063108/160538606-5e54fef4-7615-4fe0-9c3f-c029df749402.png) 이것 만큼이 되는 slack이 붙을 수 있다는 것으로 바뀐다.
+
+여기서의 문제는 C가  매개변수이기 때문에 C의 값을 정해줘야 한다는 것이다.
+
+# 5.5. Soft Margin with SVM
+
+![image](https://user-images.githubusercontent.com/101063108/160541790-7f4962d2-bcb4-426a-b9b3-5bde6bee92a7.png)
+
+slack 변수를 추가하여 penalty를 줄 수 있는데, decision boundary를 넘어가면 penalty가 1 이상의 값을 가지게 된다. 
+
+penalize를 하는 function은 다음과 같이 slack을 총 합하는 것으로 나타낼 수 있다.
+
+![image](https://user-images.githubusercontent.com/101063108/160542258-72c4dfd4-e7e4-4d14-a900-6ce7905e3e3a.png)
+
+penalty의 정도를 결정하는 이 C를 정하는게 중요해진다.
+
+**Log Loss**
+
+![image](https://user-images.githubusercontent.com/101063108/160544788-78ce3e5d-d60e-4eba-87b0-16e21f2d7c8f.png)
+
+logistic regression을 이용해 loss function을 만들 수 있는데, 이를 log loss라고 한다.
+
+![image](https://user-images.githubusercontent.com/101063108/160544988-200eeee1-0c16-4c0c-b1b5-bab05599ec4c.png)
+
+![image](https://user-images.githubusercontent.com/101063108/160545024-2d0bdea8-3d9c-499e-8df9-60786770ce4f.png)
+
+예전에 했던 식을 적용시키면,  hinge loss의 ![image](https://user-images.githubusercontent.com/101063108/160545181-02a2438a-9bc9-4083-97f3-90e26a0c29de.png) 식과 구조가 비슷함을 알 수 있다.
+
+세개의 loss function (zero-one loss, hinge loss, log loss) 중 어떤 것이 가장 선호될까?
+
+hinge loss가 1부터 penalty가 증가하는 것으로 보이는 것에 반해 log loss를 보면 이미 penalty값을 가지고 있는 것을 확인할 수 있다. decision boundary를 지난 후부터의 penalty를 보면, hinge loss에 비해 완만하게 증가하는 것을 볼 수 있다.
+
+그렇다면 C는 어떻게 정하는게 좋을까?
+
+![image](https://user-images.githubusercontent.com/101063108/160546051-18db529e-5a77-4f2e-a5a3-df7c35938833.png)
+
+아래 그림을 보면 알 수 있듯이, C의 크기가 너무 작을 경우에는 penalty가 너무 작아지므로 제대로된 decision boundary를 설정할 수 없다. 일정 크기이상의 C는 decision boundary의 위치가 거의 변하지 않는 것을 확인할 수 있다.
+
+# 5.6. Rethinking of SVM
+
+![image](https://user-images.githubusercontent.com/101063108/160550511-09279757-daa4-4ff1-9342-d56bf0d77aa6.png)
+
+지금까지는 error case를 인정하고, 최소한의 에러를 만드는 soft margin에 대해 다뤘다면, 이제는 더 복잡한 decision boundary를 통해 error case를 만들지 않는 방법을 이용하고자 한다.
+
+이러한 복잡한 decision boundary를 설정하기 전에, 가지고 있는 데이터들이 어떤 방법에 적합한지 먼저 판단하는 과정이 필요하다. 
+
+![image](https://user-images.githubusercontent.com/101063108/160551493-d636e9b4-2394-478f-91d7-ba0904a91d31.png)
+
+linear한 decision boundary를 결정하기 위한 그림이다. 이런 사례에서는 명확하게 분류가 되는 hard margin이지만, 아래의 그림을 보자.
+
+![image](https://user-images.githubusercontent.com/101063108/160551736-78136915-13b4-4a27-b6ab-76f3187858ad.png)
+
+이러한 경우에서는 위와 같은 방법을 사용할 수 없다. 더 복잡한, non-linear한 decision boundary가 필요하다.
+
+따라서 우리는 전에 linear regression에서 차수를 높여서 계산했던 것처럼, 주어진 x1, x2를 조합해 차원를 높여 넣어볼 것이다.
+
+![image](https://user-images.githubusercontent.com/101063108/160552581-0d6ce1c0-36f9-49b8-b153-3a0d2c3d191a.png)
+
+그렇게 하면 오른쪽과 같은 그림이 나오고, 연두색 부분을 따라 decision boundary가 형성된 것을 볼 수 있다.
+
+여기서는 3차까지 높여서 넣어보았는데, 이것을 무한대까지 늘리기 위해서는 kernel trick을 사용해야한다.
+
+kernel trick을 사용하기 위해서는 SVM에 있는 primal 문제를 dual 문제로 바꾸어야한다.
+
+SVM은 Constrained quadratic programming을 이용해서 parameter를 추론했다.
+
+Constrained optimization 
+
+![image](https://user-images.githubusercontent.com/101063108/160554390-81756d97-4c97-40fd-b758-b78429295887.png)
+
+
+**Lagrange method**
+
+![image](https://user-images.githubusercontent.com/101063108/160554500-0cd0c849-72c8-4fb4-b1ac-cfe8557b4b6c.png)
+
+optimize 되어있는 Lagrange의 prime function은 f(x)와 동일하게 작동한다.
+
+그렇게 되면, f(x)를 쓰지 않고 위의 함수를 사용할 수 있다 : primal problem -> dual problem
+
 
