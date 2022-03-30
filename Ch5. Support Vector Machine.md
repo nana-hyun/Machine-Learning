@@ -269,4 +269,53 @@ optimize 되어있는 Lagrange의 prime function은 f(x)와 동일하게 작동�
 
 그렇게 되면, f(x)를 쓰지 않고 위의 함수를 사용할 수 있다 : primal problem -> dual problem
 
+# 5.7. Primal and Dual with KKT Condition
+
+![image](https://user-images.githubusercontent.com/101063108/160765925-3f946193-bd07-48eb-b1c6-4f7d987bf6bd.png)
+
+primal problem과 lagrange dual problem은 위와 같으며, 앞에서의 lagrange method와 관련하여 설명될 수 있다.
+
+**strong duality**
+
+dual problem의 solution과 primal problem의 solution이 같아야 한다.
+
+![image](https://user-images.githubusercontent.com/101063108/160766592-e7a9f00c-78f2-4377-87ed-6b390ee24e2e.png)
+
+이러한 strong duality를 보장해주는 것이 있는데 Karush-Kunh-Tucker (KKT) 조건을 만족시키는 것이다.
+
+여기서는 dual problem으로 넘어갈 때, KKT condition이 만족된다고 감안하고 넘어가자.
+
+진짜 이 파트 뭔 말인지 이해안되니까 나중에 다시 정리..
+
+# 5.8. Kernel
+
+**Mapping Function**
+
+![image](https://user-images.githubusercontent.com/101063108/160775334-9a4b76e0-1da2-4f48-98b4-bce25d081958.png)
+
+2차원 위의 공간에서, 각 점들을 잇는 선분들이 분리되어 있지 않은 것을 확인 할 수 있다.
+
+이 점들을 3개의 변수?로 만들어주면, 우리는 3차원 공간에서 이 점들을 분리해서 표현할 수 있다.
+
+이러한 원리를 이용해서 3차, 4차,... 100차 혹은 그 이상도 가능할 것이다. 이런 특성 공간이 계속 커진다는 단점이 있다.
+
+kernel 계산은 다른 공간(차원)에서 두개의 벡터를 내적하는 것이다.
+
+![image](https://user-images.githubusercontent.com/101063108/160776725-d1a5810c-151f-4d54-8d7e-ab06835793aa.png)
+
+* polynomial(homogeneous)
+* polynomial(inhomogeneous)
+* Gaussian kernel function
+* Hyperbolic tangent
+
+polynomial kernel function의 경우, 다음을 따른다.
+
+![image](https://user-images.githubusercontent.com/101063108/160777165-51e7bebc-a9c4-46c5-a35b-c1a008ad0834.png)
+
+원본 벡터들을 다른 차원으로 옮긴 뒤, 내적하는 것과 내적을 한 뒤 다른 차원의 계수만큼 제곱해주는 것은 같은 결과임을 알 수 있다.
+
+이를 이용하면 매우 높은 차원으로 옮기고 내적하는 kernel을 내적하고 제곱 계산을 해주는 것으로 간단히 해결할 수 있다.
+
+# 5.9. SVM with Kernel
+
 
