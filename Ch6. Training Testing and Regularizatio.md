@@ -58,3 +58,80 @@ complex는 조금 떨어지더라도 앞으로 올 general한 데이터에 대�
 
 # 6.2. Bias and Variance
 
+에러는 두가지 경우에서 발생할 수 있다.
+
+1. Approximation
+
+approximation하면서 발생하는 에러들.
+
+2. Generalization
+
+앞으로 올 데이터에 대해서 발생하는 에러들.
+
+![image](https://user-images.githubusercontent.com/101063108/161492194-1071b910-644e-4e26-81ad-adf9f8cafa50.png)
+
+우리가 추정하는 에러인 Eout은 Ein과 Ω의 합보다 작거나 같다라고 말할 수 있으며,
+
+Ein은 approximation을 할 때 발생하는 에러이고, Ω은 관찰의 variance에 의해 발생되는 에러이다.
+
+본격적으로 식을 전개하기에 앞서 몇 가지 심볼들에 대해 정의를 하자.
+
+* f : 우리가 배우는 target function
+* g : 우리가 ML을 통해 배운 function
+* g(D) : dataset D를 사용하여 배워진 function
+* D : 실제에서 가져온 이용가능한 dataset
+* ![image](https://user-images.githubusercontent.com/101063108/161495211-fc80f9e9-46d9-44b6-8390-c1665c409805.png) : D를 무한대로 해서 가져온 hypothesis의 평균
+
+![image](https://user-images.githubusercontent.com/101063108/161495422-def28159-9e09-4442-b92e-eb73e18f3d6c.png)
+
+## Bias and Variance
+
+Bias : 편향 Variance : 분산
+
+단일 dataset D에 대해서 Eout을 계산하면 다음과 같다.
+
+![image](https://user-images.githubusercontent.com/101063108/161497271-6bc72524-81d0-425a-8b82-f9c636c616fe.png)
+
+dataset D의 무한대에 대해서 기대된 에러값은 다음과 같이 작성될 수 있다.
+
+![image](https://user-images.githubusercontent.com/101063108/161497512-4d48ba3e-e320-4b4c-a3ae-0bc57f71ab80.png)
+
+여기서 ![image](https://user-images.githubusercontent.com/101063108/161497764-cccb507b-86c6-4584-b6c9-300297628c5d.png)는 데이터에 대해서 expected error를 여러번 계산하는 것을 의미한다.
+
+![image](https://user-images.githubusercontent.com/101063108/161497957-ae8405d2-bf3a-4e51-9ae2-a29b57b60cbe.png)
+ 이 식을 조금 간단히 만들어 보자면, 다음과 같이 전개할 수 있다.
+ 
+ ![image](https://user-images.githubusercontent.com/101063108/161498100-293a88a1-95ed-4a86-a23a-64f6a81c8d8b.png)
+
+이때 ![image](https://user-images.githubusercontent.com/101063108/161498239-e18fbdf6-b883-4f2f-871c-7e68a9a19fde.png) 이 부분은 0 값을 가지게 된다. : ![image](https://user-images.githubusercontent.com/101063108/161498354-21bd6941-89a4-4b38-bce8-a7ad66666b34.png)의 정의가 무한대의 샘플링을 통해 expected한 값과 동일하기 때문이다.
+
+![image](https://user-images.githubusercontent.com/101063108/161498722-cae711c5-5871-4c9b-ba28-4773afe6bd32.png)
+ 
+ 따라서 위와 같이 정리할 수 있다.
+ 
+ 위의 식에서
+ 
+ ![image](https://user-images.githubusercontent.com/101063108/161498818-f711639b-6974-433d-819c-d64eb392d136.png)
+
+
+라고 정의해보자.
+
+variance는 우리가 가진 단 하나의 dataset으로 만든 ML 모델과 앞으로 들어올 모든 dataset에 대한 average hypothesis의 차이에서 오는 에러
+
+bias는 우리가 가진 모델의 한계점에 의해 생길 수 있는 에러 : 아무리 좋은 dataset을 가져와도 우리가 만든 모델이 true function이 될 수 없음.
+
+* reducing variance : 더 많은 데이터를 모으기
+
+* reducing bias : 더 복잡한 모델 만들기
+
+그러나 variance와 bias는 서로 tradeoff이다. : bias가 감소하면 variance가 증가, bias가 증가하면 variance가 감소
+
+-> Bias and Variance Dilemma
+
+![image](https://user-images.githubusercontent.com/101063108/161501111-a80e2bd6-cbac-4df3-b64d-1e03de292f09.png)
+
+# 6.3. Occam's Razor
+
+
+
+
