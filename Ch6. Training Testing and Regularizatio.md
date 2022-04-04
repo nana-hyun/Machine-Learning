@@ -154,8 +154,8 @@ constant line의 경우, stable하나(low variance) 1차 line보다 true functio
 
 ![image](https://user-images.githubusercontent.com/101063108/161521081-e88fd6ac-a250-4e46-a54e-de4747ebbccc.png)
 
-complex model : higher variance & lower bias
-simple model : lower variance & higher bias
+* complex model : higher variance & lower bias
+* simple model : lower variance & higher bias
 
 이 둘의 밸런스를 유지하는 것이 필요하다.
 
