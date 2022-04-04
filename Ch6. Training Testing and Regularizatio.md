@@ -169,3 +169,24 @@ fewest assumption이란? 덜 복잡한 모델
 
 즉, approximation을 할때 같은 error가 주어지면, 더 간단한 모델이 선택되는 것이다.
 
+# 6.4. Cross Validation
+
+우리는 target function으로부터 관찰되는 무한대의 샘플을 얻을 수 없다.
+
+그렇다면 우리는 이런 무한대의 sampling을 흉내내야 하는데, 앞전에 말했던 bias와 variance tradeoff에서 무한대의 dataset들을 가정하고 average hypothesis를 만들었었다.
+
+수많은 dataset들을 가지고 무한대인 것 처럼 계산을 해주어야한다.
+
+이때 쓰이는 유용한 방법이 N-Fold Cross Validation (K-Fold Cross Validation) 이다.
+
+주어진 instance의 집합을 N개의 subset으로 나누고, (N-1)개의 subset들을 training하는데 사용하고, 1개의 subset을 testing에 사용한다.
+
+![image](https://user-images.githubusercontent.com/101063108/161527937-c6d2647d-fa80-4a28-b994-a716ff68b23c.png)
+
+각 instance 하나하나를 나누고, 하나만 빼고 training하고, 나머지 하나를 testing 한다면 data instance의 개수만큼 진행할 수 있다.
+
+이것이 가장 특별한 케이스인 **LOOCV** 이다.
+
+* Leave One Out Cross Validation
+
+N-fold cross validation의 가장 극단적인 케이스로 볼 수 있다.
