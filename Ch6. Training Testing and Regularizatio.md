@@ -128,10 +128,44 @@ bias는 우리가 가진 모델의 한계점에 의해 생길 수 있는 에러 
 
 -> Bias and Variance Dilemma
 
-![image](https://user-images.githubusercontent.com/101063108/161501111-a80e2bd6-cbac-4df3-b64d-1e03de292f09.png)
-
 # 6.3. Occam's Razor
 
+![image](https://user-images.githubusercontent.com/101063108/161517711-6ab2b8a9-1568-4e6e-8019-4cf5b91cb0ce.png)
 
+true functiondl sin함수라고 하자.
 
+D={two points|point=(x,sin(2 * pi * x)),0<=x<=1}
+
+two g(x)
+
+* zero degree : dark grey line
+* one degree : light grey line
+
+two ![image](https://user-images.githubusercontent.com/101063108/161518442-c22e1b11-3a97-4b03-b35d-168e66772f6a.png)(x)
+
+* zero degree : red line
+* one degree :  green line
+
+constant line의 경우, stable하나(low variance) 1차 line보다 true function에 덜 fitting되어 있다고 할 수 있으며,(high bias) 
+
+1차 line은 만일 sample point가 다르게 잡힌다면, error가 많이 생기는 1차 line이 나올 수 있다.(high variance) & (low bias)
+
+![image](https://user-images.githubusercontent.com/101063108/161519990-cf363466-7e93-440b-a42a-8281ade356e9.png)
+
+![image](https://user-images.githubusercontent.com/101063108/161521081-e88fd6ac-a250-4e46-a54e-de4747ebbccc.png)
+
+complex model : higher variance & lower bias
+simple model : lower variance & higher bias
+
+이 둘의 밸런스를 유지하는 것이 필요하다.
+
+![image](https://user-images.githubusercontent.com/101063108/161501111-a80e2bd6-cbac-4df3-b64d-1e03de292f09.png)
+
+**Occam's Razor**
+
+competing(prediction에서 비슷한 error 가지는 것) hypotheses에서 fewest assumption이 선택된다는 것.
+
+fewest assumption이란? 덜 복잡한 모델
+
+즉, approximation을 할때 같은 error가 주어지면, 더 간단한 모델이 선택되는 것이다.
 
