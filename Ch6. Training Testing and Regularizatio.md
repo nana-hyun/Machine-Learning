@@ -84,7 +84,7 @@ Ein은 approximation을 할 때 발생하는 에러이고, Ω은 관찰의 varia
 
 ![image](https://user-images.githubusercontent.com/101063108/161495422-def28159-9e09-4442-b92e-eb73e18f3d6c.png)
 
-## Bias and Variance
+## Bias and Variance 
 
 Bias : 편향 Variance : 분산
 
