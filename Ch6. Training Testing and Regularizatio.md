@@ -190,3 +190,63 @@ fewest assumption이란? 덜 복잡한 모델
 * Leave One Out Cross Validation
 
 N-fold cross validation의 가장 극단적인 케이스로 볼 수 있다.
+
+# 6.5. Performance Metrics
+
+우리는 target function f(x)를 모르기 때문에, 우리는 average hypothesis인 ![image](https://user-images.githubusercontent.com/101063108/161665807-877d88b5-ff1a-492e-9e9d-fcfb8a1dd3c8.png) 를 계산할 수 없다.
+
+performance measure로서 bias와 variance를 사용할 수 없다.
+
+다른 performance measure들
+
+* Accuracy = (TP+FN) / (TP+FP+FN+TN)
+* Precision and Recall
+* F-Measure
+* ROC curve
+
+![image](https://user-images.githubusercontent.com/101063108/161666127-48303740-bf69-4a29-84cd-425d5c93aef6.png)
+
+* TP (True Positive) : 실제로 true인 case를 true라고 추정
+* FN (False Negative) : 실제로 true인 case를 false라고 추정
+* FP (False positive) : 실제로 false인 case를 false라고 추정
+* TN (True Negative) : 실제로 false인 case를 true라고 추정
+
+![image](https://user-images.githubusercontent.com/101063108/161666871-dc44cf26-33e6-4104-b9d5-7c7a08d82091.png)
+
+*different goals
+
+1. Spam filters
+
+스팸 메일을 분류할 때, 스팸메일이 스팸함으로 들어가지 않는 것보다는 중요한 메일이 스팸함으로 들어가는 것이 더 치명적이다.
+
+즉, 우리는 스팸으로 분류된것을 확인했을 때 스팸메일만 있어야 하는것이다. False Positive의 case는 중요한 메일이 스팸함으로 분류되었을 때를 의미한다.
+
+이 FP를 우선적으로 줄여야하며, 이를 위해 초록색 박스 부분을 measure해야한다.
+
+이 부분을 **Precision** 이라고 한다. 
+
+***TP/(TP+FP)***
+
+positive라고 예측한 것 중 진짜 true일 확률
+
+2. CRM : classifying VIP customer
+
+VIP 고객들을 절대 빼놓으면 안되는 상황에서, 수많은 고객 중 해당 VIP 고객만을 뽑아내는 일은 쉽지않을 것이다.
+
+이 경우 고객을 뽑을 때, VIP 고객이 아닌 사람이 명단에 포함되는 것보다, VIP 고객이 명단에 포함되지 않는 것이 더 치명적이다.
+
+False Negative는 VIP고객이 명단에 포함되지 않는 경우를 의미한다. 이 FN을 줄여야하고 이를 위해 보라색 박스 부분을 measure해야한다.
+
+이 부분을 **Recall** 이라고 한다.
+
+***TP/(TP+FN)***
+
+true인 case 중에서 positve로 분류되는 확률
+
+### F-Measure
+
+이러한 precision과 recall이 자주 사용되는 방법이지만, 다음과 같은 문제가 발생할 수 있다.
+
+가장 안전한 스팸필터 = 항상 스팸이 아니라고 분류
+
+가장 효과적
