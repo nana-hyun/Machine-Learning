@@ -249,4 +249,11 @@ true인 case 중에서 positve로 분류되는 확률
 
 가장 안전한 스팸필터 = 항상 스팸이 아니라고 분류
 
-가장 효과적
+VIP고객에 연락하는 것이 보장된 고객 필터 = 항상 VIP라고 분류
+
+precision과 recall의 밸런스를 맞춰주기 위해 F-Measure의 방법을 사용한다.
+
+![image](https://user-images.githubusercontent.com/101063108/161670663-722b649f-786d-401b-af77-4174929e0b36.png)
+
+# 6.6. Definition of Regularization
+
