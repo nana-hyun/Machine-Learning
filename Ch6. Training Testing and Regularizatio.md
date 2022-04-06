@@ -281,4 +281,30 @@ bias 에러가 증가하는 것을 막기 위해, complex한 모델이지만 데
 
 **Formal Definition of Regularization**
 
+regularization은 regression에 대한 제약이라고 할 수 있다.
+
+![image](https://user-images.githubusercontent.com/101063108/161941339-ef1799b3-6469-4214-bfed-fbfcced1256a.png)
+
+식에서 앞쪽 부분은 에러를 줄여주는 training의 정확도를 의미하는 부분이고 뒤는 regularization term이다. 
+
+regularizaiton term은 lambda와 가중치로 구성이 되는데, lambda의 값이 커지면, 가중치의 값이 작아진다. 따라서 lambda가 0이 되면, 일반적인 선형 회귀 모형이 된다.
+
+위 두개의 식의 차이는 가중치의 제곱값이 들어가는지, 가중치의 절댓값이 들어가는지의 차이이다.
+
+![image](https://user-images.githubusercontent.com/101063108/161943604-63eaaa7f-9a91-4c8a-9ced-75829b30ac30.png)
+
+* L1 Regularization == Lasso regularization
+
+밑의 식에 해당된다. 그림을 보면 알 수 있듯이, 마름모 꼴의 모양이 나오고, 몇몇 파라미터들을 0으로 만들어 주어 변수 선택이 가능하다는 특징이 있다.
+
+
+변수를 선택함으로써 모델을 단순하게 만들어줄 수 있다. 미분은 불가능하다.
+
+* L2 Regularization == Ridge regularization
+
+위의 식에 해당된다. 원 형태의 제약조건을 그릴 수 있으며, 이는 어디든지 접할 수 있기 때문에, 많은 파라미터들이 0이 아닌 값을 가지고, 변수 선택이 불가능하다.
+
+적절한 가중치 배분이 가능하며, 미분을 통해 구할 수 있으므로 최적화 기술들을 잘 활용할 수 있다는 장점이 있다.
+
+# 6.7. Application of Regularization
 
