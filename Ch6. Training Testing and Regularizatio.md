@@ -257,3 +257,28 @@ precision과 recall의 밸런스를 맞춰주기 위해 F-Measure의 방법을 �
 
 # 6.6. Definition of Regularization
 
+![image](https://user-images.githubusercontent.com/101063108/161920386-83e05e1a-8f1c-42d0-a989-1a31020ca237.png)
+
+![image](https://user-images.githubusercontent.com/101063108/161921957-f8fabaaa-96ad-4dca-9c31-0f35c269ad6a.png)
+
+이런식으로 잘못된 점을 샘플링했을 때, 에러가 커질 수 있다. 이렇게 되면 오히려 위에서 봤던 상수함수가 더 좋을 수 있다.
+
+따라서 regularization을 해주게 되는데, regularization의 concept은 perfect fit을 포기한다는 것이다. 
+
+training accuracy를 줄임 - 앞으로 올 test 데이터들에서의 potential fit을 증가시킴
+
+complex한 모델의 경우, bias가 감소하는 경향을 보인다. 그러면 overfitting이 되는데, 이를 막기 위해, 두가지 방법이 있을 수 있다.
+
+1. complex하지 않은 모델을 만들자!
+
+complex한 모델을 만들지 않고, 상수 함수같이 단순한 모델들을 만들면 된다. 그러나 이 경우, bias가 증가하여 에러가 증가할 수 있다.
+
+2. complex한 모델을 만들되 둔감하게 만들자!
+
+bias 에러가 증가하는 것을 막기 위해, complex한 모델이지만 데이터에 둔감하게 만들어보자. 이 경우, perfect fit은 못하지만, 데이터의 경향성은 따르게끔 만들 수 있다.
+
+-> 이것이 regularization의 목표 : 모델을 너무 민감하게 만들지 않는 것.
+
+**Formal Definition of Regularization**
+
+
