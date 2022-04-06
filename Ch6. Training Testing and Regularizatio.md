@@ -308,3 +308,64 @@ regularizaiton term은 lambda와 가중치로 구성이 되는데, lambda의 값
 
 # 6.7. Application of Regularization
 
+ridge regularization의 아이디어를 linear regression에 적용해보자.
+
+![image](https://user-images.githubusercontent.com/101063108/162034712-047c6ef0-9b68-425a-b030-b94214f48855.png)
+
+w로 편미분한 값을 0이라고 하고 계산하여 적절한 w의 closed form을 구할 수 있다.
+
+![image](https://user-images.githubusercontent.com/101063108/162035020-fdc9c9f2-7053-4cb6-94a2-2af84edfb258.png)
+
+![image](https://user-images.githubusercontent.com/101063108/162035058-61cfeb93-0765-426a-b0dd-860bba277508.png)
+
+아래는 이제 regularization을 적용하기 전과 후의 그래프이다.
+
+![image](https://user-images.githubusercontent.com/101063108/162035243-48d36215-742e-4cce-aeb6-6b24d0f90140.png)
+
+첫번째에서 regularization(lambda = 1)을 통해 두번째 그래프로 그려졌는데, bias는 약간 증가했지만, variance가 훨씬 더 많이 감소한 것을 알 수 있다.
+
+-> 에러를 감소하는 결과를 기대할 수 있다.
+
+위에서는 lambda가 1일때의 결과를 보여주었는데, lambda 값이 변하면 regularization은 어떤 결과를 만들어낼까?
+
+![image](https://user-images.githubusercontent.com/101063108/162035775-966133b0-5cc1-42f8-a8bf-7af41bc1faaf.png)
+
+* lambda = 0 (너무 낮은 lambda를 가질 때)
+    * 너무 높은 variance를 가진다.
+    * regularization을 적용하지 않은 것과 결과가 같다. 
+* lambda = 100 (너무 높은 lambda를 가질 때)
+    * 너무 낮은 variance를 가진다.
+    * complex하지 않은, 너무 단순한 모델을 만들며, 1차함수 모델이 상수함수처럼 보인다.
+
+우리는 적절한 lambda값을 찾아야하고, 이를 위해 실험을 여러번 시도해보아야한다.
+
+**Regularization of Logistic Regression**
+
+regularization은 logistic regression에도 적용할 수 있다.
+
+* logistic regression에서의 ɵhat
+
+![image](https://user-images.githubusercontent.com/101063108/162038324-5eda1880-847c-47d1-934f-f7f073511c13.png)
+
+우리는 closed form을 찾고 적절한 ɵ의 형태에 접근할 수 있다.
+
+![image](https://user-images.githubusercontent.com/101063108/162037366-9d832e24-9e59-4ab9-9918-0894d0b9bcde.png)
+
+![image](https://user-images.githubusercontent.com/101063108/162037402-cca0ec95-a49f-4a5b-9ab4-9fa733d83a6e.png)
+
+regularization 부분까지 감안해서 apporximate 해야한다.
+
+**Regularization and SVM**
+
+![image](https://user-images.githubusercontent.com/101063108/162039818-1190ef33-a5eb-4892-9417-4954f7a4ce8d.png)
+
+예전에 SVM을 배울 때 봤던 PPT에서 가져와 보았다.
+
+regularization과 SVM에서의 C는 유사하게 작동하는 부분이 있다.
+
+soft-margined하다는 것은 regularization을 수행하는 것을 포함한다고 생각할 수 있다.
+
+![image](https://user-images.githubusercontent.com/101063108/162040214-2715829d-435b-425b-9699-906dd92c1c2c.png)
+
+따라서 우리는 이러한 C값을 위와 같이 적을 수 있다.
+
